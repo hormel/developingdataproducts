@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A Stock Graphing and Forecasting App</title>
+  <meta charset="utf-8">
+  <meta name="description" content="A Stock Graphing and Forecasting App">
+  <meta name="author" content="Developing Data Products">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>A Stock Graphing and Forecasting App</h1>
+    <h2>June 2015</h2>
+    <p>Developing Data Products<br/>Johns Hopkins University / Coursera</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Stock Graphing and Forecasting</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Shiny App</li>
+<li>Automatically pulls live data from Yahoo Finance</li>
+<li>Graphs stock price and provides a prediction with confidence intervals</li>
+<li>Selectable date ranges and forecast windows</li>
+<li>Pick your desired confidence interval</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Demo</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>For example, suppose you want to decide if you sould invest your retirement funds in Apple stock.</p>
+
+<ol>
+<li>You think the past 90 days are a good indicator of momentum in the next month</li>
+<li>You want to be 95% confident in your forecast</li>
+</ol>
+
+<pre><code class="r">ticker &lt;- &quot;AAPL&quot;
+startDate &lt;- Sys.Date() - 90
+endDate &lt;- Sys.Date()
+data &lt;- getSymbols (ticker, src = &quot;yahoo&quot;, auto.assign = FALSE)
+attr (data, &quot;dimnames&quot;)[[2]] &lt;- c (&quot;Open&quot;, &quot;High&quot;, &quot;Low&quot;, &quot;Close&quot;, &quot;Volume&quot;, &quot;Adjusted&quot;)
+stock &lt;- data [ (startDate &lt;= index (data)) &amp; (index (data) &lt;= endDate) ]
+forecastDays &lt;- 30
+confidence &lt;- 95
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sample Output</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/Output-1.png" alt="plot of chunk Output"> </p>
+
+<ul>
+<li>Disclaimer: don&#39;t really trade on based on this forecast.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Thank you!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Resources:</p>
+
+<ol>
+<li><p>The app site: <a href="https://hormel.shinyapps.io/stock_forecaster">https://hormel.shinyapps.io/stock_forecaster</a></p>
+
+<p>Try it yourself!</p></li>
+<li><p>GitHub repository: <a href="https://github.com/hormel/developingdataproducts">https://github.com/hormel/developingdataproducts</a></p>
+
+<p>Contains the Shiny code</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Stock Graphing and Forecasting'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Demo'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Sample Output'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Thank you!'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
